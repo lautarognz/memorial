@@ -6,6 +6,27 @@ function CTA() {
       className="relative overflow-hidden px-6 py-32 font-sans text-center"
       style={{ backgroundColor: "#1C1813" }}
     >
+      {/* Imagen de fondo sutil */}
+      <div className="absolute inset-0">
+        <img
+          src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1600"
+          alt=""
+          className="h-full w-full object-cover"
+          style={{ opacity: 0.06 }}
+        />
+      </div>
+
+      {/* Textura de grano */}
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E")`,
+          backgroundRepeat: "repeat",
+          backgroundSize: "200px 200px",
+          opacity: 0.4,
+        }}
+      />
+
       {/* Luz central sutil */}
       <div
         className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2"
@@ -33,6 +54,22 @@ function CTA() {
           }}
         />
 
+        {/* Cita emotiva */}
+        <p
+          className="!mb-8 w-full !text-center font-display text-lg italic"
+          style={{ color: "rgba(200,184,154,0.5)" }}
+        >
+          "El amor no muere cuando alguien se va,
+          <br />
+          vive en cada recuerdo que dejaron."
+        </p>
+
+        {/* Divisor */}
+        <div
+          className="mx-auto !mb-8 h-px w-8"
+          style={{ background: "rgba(200,184,154,0.2)" }}
+        />
+
         {/* Eyebrow */}
         <p
           className="!mb-8 flex items-center justify-center gap-4 text-[11px] font-light tracking-widest3 uppercase"
@@ -52,10 +89,7 @@ function CTA() {
         {/* Título */}
         <h2
           className="font-display font-light leading-[1.15] tracking-tight"
-          style={{
-            fontSize: "clamp(2rem,5vw,3.5rem)",
-            color: "#F7F3EE",
-          }}
+          style={{ fontSize: "clamp(2rem,5vw,3.5rem)", color: "#F7F3EE" }}
         >
           Mantén viva su historia{" "}
           <em style={{ color: "rgba(200,184,154,0.85)" }}>para siempre</em>
@@ -69,7 +103,7 @@ function CTA() {
 
         {/* Subtítulo */}
         <p
-          className="!mb-16 !text-center text-base font-light leading-relaxed tracking-wide"
+          className="!mb-16 w-full !text-center text-base font-light leading-relaxed tracking-wide"
           style={{ color: "rgba(247,243,238,0.45)" }}
         >
           Crea un memorial digital y comparte recuerdos con quienes más
@@ -80,10 +114,7 @@ function CTA() {
         <Link
           to="/create"
           className="inline-block px-10 py-4 text-[12px] font-normal tracking-widest2 uppercase transition-all duration-300"
-          style={{
-            background: "#F7F3EE",
-            color: "#1C1813",
-          }}
+          style={{ background: "#F7F3EE", color: "#1C1813" }}
           onMouseEnter={(e) => {
             e.currentTarget.style.background = "rgba(200,184,154,0.9)";
           }}
@@ -96,7 +127,7 @@ function CTA() {
 
         {/* Texto secundario */}
         <p
-          className="!mt-10 !text-center text-[11px] font-light tracking-widest uppercase"
+          className="!mt-10 w-full !text-center text-[11px] font-light tracking-widest uppercase"
           style={{ color: "rgba(247,243,238,0.2)" }}
         >
           Sin complicaciones · Disponible en cualquier momento

@@ -22,8 +22,30 @@ function Hero() {
   return (
     <section
       ref={containerRef}
-      className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-marfil-100 px-6 py-20 font-sans"
+      className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 py-20 font-sans"
+      style={{ backgroundColor: "#F7F3EE" }}
     >
+      {/* Foto de fondo sutil */}
+      <div className="absolute inset-0">
+        <img
+          src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=1600"
+          alt=""
+          className="h-full w-full object-cover"
+          style={{ opacity: 0.07 }}
+        />
+      </div>
+
+      {/* Textura de grano sutil */}
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E")`,
+          backgroundRepeat: "repeat",
+          backgroundSize: "200px 200px",
+          opacity: 0.4,
+        }}
+      />
+
       {/* Línea decorativa superior */}
       <div className="absolute left-1/2 top-12 h-16 w-px -translate-x-1/2 bg-gradient-to-b from-transparent to-piedra-500/30" />
 
@@ -58,16 +80,27 @@ function Hero() {
         {/* Subtítulo */}
         <p
           data-reveal
-          className="mx-auto mb-12 max-w-md text-base font-light leading-relaxed tracking-wide text-piedra-900/55"
+          className="mb-8 w-full px-20 !text-center text-lg font-light leading-relaxed tracking-wide text-piedra-900/70"
         >
           Crea un espacio único y eterno. Comparte fotos, historias y recuerdos
           accesibles mediante código QR.
         </p>
 
+        {/* Cita emotiva */}
+        <p
+          data-reveal
+          className="mb-12 w-full px-24 !text-center font-display text-lg italic"
+          style={{ color: "rgba(125,110,91,0.75)" }}
+        >
+          "Los que amamos nunca se van del todo,
+          <br />
+          viven en los recuerdos que dejan."
+        </p>
+
         {/* Botones */}
         <div
           data-reveal
-          className="flex flex-col items-center justify-center gap-4 sm:flex-row"
+          className="flex flex-col items-center justify-center gap-4 sm:flex-row mt-10"
         >
           <Link
             to="/create"
@@ -82,18 +115,42 @@ function Hero() {
         </div>
 
         {/* Features */}
-        <div data-reveal className="mt-20 flex justify-center gap-14">
+        <div
+          data-reveal
+          className="mt-20 grid grid-cols-3 divide-x divide-piedra-500/15 border border-piedra-500/15"
+        >
           {[
-            { icon: "❤", label: "Recuerdos" },
-            { icon: "⬜", label: "Fotos" },
-            { icon: "♪", label: "Música" },
-          ].map(({ icon, label }) => (
-            <div key={label} className="flex flex-col items-center gap-2">
-              <div className="flex h-8 w-8 items-center justify-center border border-piedra-500/25 text-sm">
+            {
+              icon: "❤",
+              label: "Recuerdos",
+              desc: "Fotos, historias y momentos que perduran",
+            },
+            {
+              icon: "♪",
+              label: "Música",
+              desc: "Las canciones que marcaron su vida",
+            },
+            {
+              icon: "💬",
+              label: "Mensajes",
+              desc: "Palabras de quienes lo recuerdan",
+            },
+          ].map(({ icon, label, desc }) => (
+            <div
+              key={label}
+              className="flex flex-col items-center gap-3 px-6 py-8"
+            >
+              <span
+                className="font-display text-2xl"
+                style={{ color: "rgba(125,110,91,0.8)" }}
+              >
                 {icon}
-              </div>
-              <span className="text-[10px] font-light tracking-widest2 uppercase text-piedra-900/40">
+              </span>
+              <span className="text-[11px] font-normal tracking-widest2 uppercase text-piedra-900">
                 {label}
+              </span>
+              <span className="text-[12px] font-light leading-relaxed tracking-wide text-piedra-700">
+                {desc}
               </span>
             </div>
           ))}
