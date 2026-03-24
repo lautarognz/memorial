@@ -3,55 +3,50 @@ import { Link, useLocation } from "react-router-dom";
 function Navbar() {
   const location = useLocation();
 
-  const linkStyle = (path) =>
-    `relative transition ${
-      location.pathname === path
-        ? "text-white"
-        : "text-gray-400 hover:text-white"
-    }`;
+  const isActive = (path) => location.pathname === path;
 
   return (
-    <nav className="sticky top-0 z-50 backdrop-blur-lg bg-black/70 border-b border-white/10">
-      <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-        {/* Logo + Branding */}
+    <nav className="sticky top-0 z-50 bg-marfil-100/90 font-sans backdrop-blur-md border-b border-piedra-500/10">
+      <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
+        {/* Logo */}
         <Link to="/" className="flex flex-col leading-tight">
-          <span className="text-2xl font-bold text-white tracking-tight">
+          <span className="font-display text-xl font-light tracking-tight text-piedra-900">
             Memorial
           </span>
-          <span className="text-xs text-gray-400">Preserva su memoria</span>
+          <span className="text-[10px] font-light tracking-widest2 uppercase text-piedra-500/60">
+            Preserva su memoria
+          </span>
         </Link>
 
         {/* Links */}
-        <div className="hidden md:flex items-center gap-8 text-sm">
-          <Link to="/" className={linkStyle("/")}>
-            Inicio
-            {location.pathname === "/" && (
-              <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-white rounded-full"></span>
-            )}
-          </Link>
-
-          <Link to="/create" className={linkStyle("/create")}>
-            Crear Memorial
-            {location.pathname === "/create" && (
-              <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-white rounded-full"></span>
-            )}
-          </Link>
-
-          <Link to="/admin" className={linkStyle("/admin")}>
-            Admin
-            {location.pathname === "/admin" && (
-              <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-white rounded-full"></span>
-            )}
-          </Link>
+        <div className="hidden items-center gap-10 md:flex">
+          {[
+            { to: "/", label: "Inicio" },
+            { to: "/create", label: "Crear memorial" },
+            { to: "/admin", label: "Admin" },
+          ].map(({ to, label }) => (
+            <Link
+              key={to}
+              to={to}
+              className="relative text-[12px] font-light tracking-widest uppercase transition-colors duration-200"
+              style={{
+                color: isActive(to) ? "#2E2A25" : "rgba(46,42,37,0.45)",
+              }}
+            >
+              {label}
+              {isActive(to) && (
+                <span className="absolute -bottom-1 left-0 h-px w-full bg-piedra-500/40" />
+              )}
+            </Link>
+          ))}
         </div>
 
         {/* CTA */}
         <Link
           to="/create"
-          className="relative inline-flex items-center justify-center px-5 py-2 text-sm font-medium text-black bg-white rounded-xl overflow-hidden group"
+          className="inline-block bg-piedra-900 px-6 py-2.5 text-[11px] font-normal tracking-widest2 uppercase text-marfil-100 transition-colors duration-300 hover:bg-piedra-500"
         >
-          <span className="absolute inset-0 bg-gradient-to-r from-gray-200 to-white opacity-0 group-hover:opacity-100 transition"></span>
-          <span className="relative">Crear memorial</span>
+          Crear memorial
         </Link>
       </div>
     </nav>

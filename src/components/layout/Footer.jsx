@@ -2,81 +2,125 @@ import { Link } from "react-router-dom";
 
 function Footer() {
   return (
-    <footer className="relative mt-20 border-t border-white/10 bg-black/80 backdrop-blur-lg text-gray-300">
-      {/* ✨ Línea glow */}
-      <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-70" />
-
-      {/* Contenido */}
-      <div className="max-w-6xl mx-auto px-6 py-12 grid gap-10 md:grid-cols-3">
+    <footer className="font-sans" style={{ backgroundColor: "#1C1813" }}>
+      {/* Contenido principal */}
+      <div className="mx-auto max-w-5xl px-6 py-16 grid gap-12 md:grid-cols-3">
         {/* Brand */}
-        <div>
-          <h2 className="text-2xl font-bold text-white tracking-tight">
-            Memorial
-          </h2>
+        <div className="flex flex-col">
+          <Link to="/" className="flex flex-col leading-tight">
+            <span
+              className="font-display text-xl font-light tracking-tight"
+              style={{ color: "#F7F3EE" }}
+            >
+              Memorial
+            </span>
+            <span
+              className="text-[10px] font-light tracking-widest2 uppercase"
+              style={{ color: "rgba(200,184,154,0.5)" }}
+            >
+              Preserva su memoria
+            </span>
+          </Link>
 
-          <p className="mt-3 text-sm text-gray-400">
+          <p
+            className="!mt-6 !text-left text-sm font-light leading-relaxed tracking-wide"
+            style={{ color: "rgba(247,243,238,0.4)" }}
+          >
             Preserva y comparte los recuerdos de quienes ya no están. Un espacio
             digital para mantener viva su historia.
           </p>
 
-          <p className="mt-4 text-xs text-gray-500 italic">
-            “Recordar es mantener viva la memoria.”
+          <p
+            className="!mt-5 !text-left font-display text-sm italic"
+            style={{ color: "rgba(200,184,154,0.5)" }}
+          >
+            "Recordar es mantener viva la memoria."
           </p>
         </div>
 
         {/* Links */}
-        <div>
-          <h3 className="text-white font-medium mb-4">Explorar</h3>
+        <div className="flex flex-col">
+          <p
+            className="!mb-6 !text-left text-[10px] font-light tracking-widest3 uppercase"
+            style={{ color: "rgba(200,184,154,0.5)" }}
+          >
+            Explorar
+          </p>
 
-          <ul className="space-y-2 text-sm">
-            <li>
-              <Link to="/" className="hover:text-white transition">
-                Inicio
-              </Link>
-            </li>
-
-            <li>
-              <Link to="/create" className="hover:text-white transition">
-                Crear Memorial
-              </Link>
-            </li>
-
-            <li>
-              <Link to="/memorial/demo" className="hover:text-white transition">
-                Ver ejemplo
-              </Link>
-            </li>
-
-            <li>
-              <a href="#" className="hover:text-white transition">
-                Contacto
-              </a>
-            </li>
+          <ul className="flex flex-col gap-3">
+            {[
+              { to: "/", label: "Inicio" },
+              { to: "/create", label: "Crear memorial" },
+              { to: "/memorial/demo", label: "Ver ejemplo" },
+              { to: "#", label: "Contacto" },
+            ].map(({ to, label }) => (
+              <li key={label}>
+                <Link
+                  to={to}
+                  className="text-[12px] font-light tracking-wide transition-colors duration-200"
+                  style={{ color: "rgba(247,243,238,0.35)" }}
+                  onMouseEnter={(e) =>
+                    (e.currentTarget.style.color = "rgba(247,243,238,0.8)")
+                  }
+                  onMouseLeave={(e) =>
+                    (e.currentTarget.style.color = "rgba(247,243,238,0.35)")
+                  }
+                >
+                  {label}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
 
         {/* CTA */}
-        <div>
-          <h3 className="text-white font-medium mb-4">Comenzar</h3>
+        <div className="flex flex-col">
+          <p
+            className="!mb-6 !text-left text-[10px] font-light tracking-widest3 uppercase"
+            style={{ color: "rgba(200,184,154,0.5)" }}
+          >
+            Comenzar
+          </p>
 
-          <p className="text-sm text-gray-400">
+          <p
+            className="!mb-8 !text-left text-sm font-light leading-relaxed tracking-wide"
+            style={{ color: "rgba(247,243,238,0.4)" }}
+          >
             Crea un memorial digital y comparte su historia con el mundo.
           </p>
 
           <Link
             to="/create"
-            className="inline-block mt-4 px-5 py-2 text-sm font-medium text-black bg-white rounded-xl hover:bg-gray-200 transition"
+            className="inline-block self-start px-7 py-3 text-[11px] font-normal tracking-widest2 uppercase transition-colors duration-300"
+            style={{ background: "#F7F3EE", color: "#1C1813" }}
+            onMouseEnter={(e) =>
+              (e.currentTarget.style.background = "rgba(200,184,154,0.9)")
+            }
+            onMouseLeave={(e) => (e.currentTarget.style.background = "#F7F3EE")}
           >
             Crear memorial
           </Link>
 
-          <p className="mt-6 text-xs text-gray-500">contacto@memorial.com</p>
+          <p
+            className="!mt-8 !text-left text-[11px] font-light tracking-wide"
+            style={{ color: "rgba(247,243,238,0.2)" }}
+          >
+            contacto@memorial.com
+          </p>
         </div>
       </div>
 
       {/* Línea inferior */}
-      <div className="border-t border-white/10 text-center py-4 text-xs text-gray-500">
-        © 2026 Memorial — Todos los derechos reservados
+      <div
+        className="border-t px-6 py-5 text-center"
+        style={{ borderColor: "rgba(200,184,154,0.08)" }}
+      >
+        <p
+          className="!text-center text-[10px] font-light tracking-widest uppercase"
+          style={{ color: "rgba(247,243,238,0.2)" }}
+        >
+          © 2026 Memorial — Todos los derechos reservados
+        </p>
       </div>
     </footer>
   );
